@@ -42,4 +42,4 @@ minikube-stand:
 .PHONY: addons
 addons:
 	@echo $(addons)
-	# minikube addons enable $(addons)
+	minikube addons enable $(addons)

@@ -2,5 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - app #complains
-  - test/pod-debug.yaml
+  - complains-ns.yaml
+  - complains-deployment.yaml

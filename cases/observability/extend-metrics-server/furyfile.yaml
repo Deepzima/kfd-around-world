@@ -1,0 +1,32 @@
+versions:
+  aws: v1.15.6
+  ingress: v1.14.1
+  logging: v3.1.3
+  monitoring: v2.1.0
+  networking: v1.12.2
+
+bases:
+  - name: aws
+  - name: ingress/cert-manager
+  - name: ingress/forecastle
+  - name: ingress/dual-nginx
+  - name: ingress/nginx
+  - name: logging/cerebro
+  - name: logging/configs
+  - name: logging/curator
+  - name: logging/elasticsearch-single
+  - name: logging/kibana
+  - name: logging/logging-operated
+  - name: logging/logging-operator
+  - name: monitoring/alertmanager-operated
+  - name: monitoring/configs
+  - name: monitoring/grafana
+  - name: monitoring/kube-proxy-metrics
+  - name: monitoring/kube-state-metrics
+  - name: monitoring/blackbox-exporter
+  - name: monitoring/eks-sm
+  - name: monitoring/node-exporter
+  - name: monitoring/prometheus-operated
+  - name: monitoring/prometheus-operator
+  - name: monitoring/prometheus-adapter
+  - name: monitoring/thanos

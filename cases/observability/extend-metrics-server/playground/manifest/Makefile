@@ -1,6 +1,6 @@
 # Stage
 .PHONY: build
-stage-build:
+build:
  @kustomize build ./stage
 
 .PHONY: diff

@@ -11,22 +11,23 @@ bases:
   - name: ingress/forecastle
   - name: ingress/dual-nginx
   - name: ingress/nginx
-  - name: logging/cerebro
-  - name: logging/configs
-  - name: logging/curator
-  - name: logging/elasticsearch-single
-  - name: logging/kibana
+
   - name: logging/logging-operated
   - name: logging/logging-operator
-  - name: monitoring/alertmanager-operated
+  - name: logging/loki-configs
+  - name: logging/loki-distributed
+  - name: logging/minio-ha
+
+
   - name: monitoring/configs
   - name: monitoring/grafana
-  - name: monitoring/kube-proxy-metrics
-  - name: monitoring/kube-state-metrics
-  - name: monitoring/blackbox-exporter
   - name: monitoring/eks-sm
   - name: monitoring/node-exporter
+  - name: monitoring/blackbox-exporter
+  - name: monitoring/kube-proxy-metrics
+  - name: monitoring/kube-state-metrics
   - name: monitoring/prometheus-operated
   - name: monitoring/prometheus-operator
   - name: monitoring/prometheus-adapter
+  - name: monitoring/alertmanager-operated
   - name: monitoring/thanos

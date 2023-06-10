@@ -1,0 +1,36 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+images:
+  - name: grafana/grafana
+    newName: registry.sighup.io/fury/grafana/grafana
+    newTag: 9.3.2
+  - name: kiwigrid/k8s-sidecar
+    newName: registry.sighup.io/fury/kiwigrid/k8s-sidecar
+    newTag: 1.19.2
+
+patchesStrategicMerge:
+  - patches/grafana-dashboard-sidecar.yml
+  - patches/grafana-datasource-sidecar.yml
+  - patches/grafana-env.yaml
+  - patches/grafana-security-context.yml
+  - patches/grafana-volumes.yaml
+
+resources:
+  - dashboards
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
+  - config.yaml
+  - dashboardSources.yaml
+  - deployment.yaml
+  - prometheusRule.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml

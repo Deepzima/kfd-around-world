@@ -7,6 +7,7 @@ resources:
   - ../../../../vendor/katalog/monitoring/kube-proxy-metrics
   - ../../../../vendor/katalog/monitoring/kube-state-metrics
   - ../../../../vendor/katalog/monitoring/node-exporter
+  - ../../../../vendor/katalog/monitoring/blackbox-exporter
   - ../../../../vendor/katalog/monitoring/prometheus-operated
   - ../../../../vendor/katalog/monitoring/prometheus-operator
   - ../../../../vendor/katalog/monitoring/prometheus-adapter

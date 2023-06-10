@@ -1,0 +1,16 @@
+.idea
+.terraform
+.terraform.lock.hcl
+terraform.plan
+**.ovpn
+**.logs
+openvpn_certs/
+.DS_Store
+*/secrets/*
+.vscode/settings.json
+*/logs/*
+.*build*.yaml
+.monokle
+.vscode
+.envrc
+

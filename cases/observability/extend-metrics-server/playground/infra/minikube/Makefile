@@ -1,4 +1,4 @@
-kubernetes-version?=v1.26.3
+kubernetes-version?=v1.25.3
 cluster-name?=cluster-one
 profile?=cluster-one
 driver?=hyperkit

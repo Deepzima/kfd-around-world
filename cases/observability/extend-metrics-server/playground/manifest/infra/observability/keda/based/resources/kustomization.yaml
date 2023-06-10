@@ -37,5 +37,5 @@ resources:
   - keda-external-metrics-reader-cr.yaml
   - keda-hpa-controller-external-metrics-crb.yaml
   - keda-metrics-apiserver-deployment.yaml
-  - keda-metrics-apiservert-svc.yaml
+  - keda-metrics-apiserver-svc.yaml
   - external-metrics-apiservice.yaml

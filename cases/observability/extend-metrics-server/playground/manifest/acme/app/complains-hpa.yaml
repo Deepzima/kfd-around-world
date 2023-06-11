@@ -16,8 +16,8 @@ spec:
     - type: prometheus
       metadata:
         serverAddress: http://prometheus-k8s.monitoring.svc:9090
-        metricName: http_requests_total
-        query: sum(rate(http_requests_total{deployment="acme-complains"}[2m])) 
+        metricName: nginx_ingress_controller_requests
+        query: sum(rate(nginx_ingress_controller_requests{exported_service="complains-app-service"}[1m])) 
         threshold: '75'
   # - type: prometheus
   #   metadata:

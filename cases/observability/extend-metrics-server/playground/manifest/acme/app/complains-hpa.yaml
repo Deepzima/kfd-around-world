@@ -1,23 +1,24 @@
-apiVersion: keda.k8s.io/v1alpha1
+apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-name: total-request-hpa
-labels:
-  deploymentName: acme-complains
+  name: total-request-hpa
+  namespace: complains-app
+  labels:
+    deploymentName: acme-complains
 spec:
   minReplicaCount: 1
   maxReplicaCount: 3
   pollingInterval: 3 # Optional. Default: 30 seconds
   cooldownPeriod: 5 # Optional. Default: 300 seconds
-scaleTargetRef:
-  deploymentName: acme-complains
-triggers:
-  - type: prometheus
-    metadata:
-      serverAddress: http://prometheus-k8s.monitoring.svc:9090
-      metricName: http_requests_total
-      query: sum(rate(http_requests_total{deployment="acme-complains"}[2m])) 
-      threshold: 75
+  scaleTargetRef:
+    name: acme-complains
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus-k8s.monitoring.svc:9090
+        metricName: http_requests_total
+        query: sum(rate(http_requests_total{deployment="acme-complains"}[2m])) 
+        threshold: '75'
   # - type: prometheus
   #   metadata:
   #     # Required fields:

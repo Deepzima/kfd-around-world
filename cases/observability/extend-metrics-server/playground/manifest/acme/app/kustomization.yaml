@@ -3,4 +3,6 @@ kind: Kustomization
 
 resources:
   - complains-ns.yaml
+  - complains-hpa.yaml
   - complains-deployment.yaml
+  - complains-ingress.yaml

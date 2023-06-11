@@ -3,10 +3,10 @@ kind: Kustomization
 
 images:
   - name: keda-metrics-apiserver
-    newName: ghcr.io/kedacore/keda-metrics-apiserver:2.10.1
+    newName: ghcr.io/kedacore/keda-metrics-apiserver
     newTag: 2.10.1
   - name: keda
-    newName: ghcr.io/kedacore/keda:2.10.1
+    newName: ghcr.io/kedacore/keda
     newTag: 2.10.1
 
 patchesStrategicMerge:

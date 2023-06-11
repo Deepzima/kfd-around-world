@@ -1,0 +1,39 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterFlow
+metadata:
+  name: kubernetes
+spec:
+  filters:
+    - dedot:
+        de_dot_separator: "_"
+        de_dot_nested: true
+    # Added parser json on key message to parse containerd json logs
+    - parser:
+        key_name: message
+        parse:
+          type: json
+        remove_key_name_field: true
+        reserve_data: true
+        emit_invalid_record_to_error: false
+  match:
+    - exclude:
+        namespaces:
+          - kube-system
+          - logging
+          - monitoring
+          - ingress-nginx
+          - cert-manager
+          - tigera-operator
+          - calico-system
+          - calico-api
+          - vmware-system-csi
+          - pomerium
+          - gatekeeper-system
+    - select: {}
+  globalOutputRefs:
+    - kubernetes

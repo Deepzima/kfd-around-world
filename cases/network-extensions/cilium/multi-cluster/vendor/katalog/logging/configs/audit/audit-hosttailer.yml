@@ -1,0 +1,32 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging-extensions.banzaicloud.io/v1alpha1
+kind: HostTailer
+metadata:
+  name: audit
+spec:
+  fileTailers:
+    - name: audit
+      disabled: false
+      path: /var/log/kubernetes/kube-apiserver-audit.log
+      buffer_max_size: "256k"
+      skip_long_lines: "On"
+      containerOverrides:
+        image: registry.sighup.io/fury/fluent/fluent-bit:1.9.5
+  workloadOverrides:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+            - matchExpressions:
+                - key: node-role.kubernetes.io/master
+                  operator: Exists
+    tolerations:
+      - operator: Exists
+        effect: NoSchedule

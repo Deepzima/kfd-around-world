@@ -1,0 +1,24 @@
+# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: cert-manager
+  labels: {}
+spec:
+  endpoints:
+  - interval: 30s
+    port: tcp-prometheus-servicemonitor
+  jobLabel: app
+  namespaceSelector:
+    matchNames:
+    - cert-manager
+  selector:
+    matchLabels:
+      app: cert-manager
+      app.kubernetes.io/name: cert-manager
+      app.kubernetes.io/instance: cert-manager
+      app.kubernetes.io/component: "controller"

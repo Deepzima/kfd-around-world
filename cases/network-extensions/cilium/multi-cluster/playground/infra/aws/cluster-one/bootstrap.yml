@@ -1,0 +1,33 @@
+kind: Bootstrap
+metadata:
+  name: extended-net-demo
+spec:
+  networkCIDR: 10.1.0.0/16
+  publicSubnetsCIDRs:
+  - 10.1.48.0/24
+  - 10.1.49.0/24
+  - 10.1.50.0/24
+  privateSubnetsCIDRs:
+  - 10.1.0.0/20
+  - 10.1.16.0/20
+  - 10.1.32.0/20
+  vpn:
+    instances: 1
+    port: 1194
+    instanceType: t3.micro
+    diskSize: 50
+    operatorName: sighup
+    dhParamsBits: 2048
+    subnetCIDR: 172.16.0.0/16
+    sshUsers:
+    - deepzima
+    operatorCIDRs:
+    - 0.0.0.0/0
+executor:
+  state:
+    backend: s3
+    config:
+      bucket: extended-net-demo
+      key: furyctl/boostrap-net
+      region: eu-west-1
+provisioner: aws

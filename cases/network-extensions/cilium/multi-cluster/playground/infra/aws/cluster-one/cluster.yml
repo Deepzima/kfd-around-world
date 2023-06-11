@@ -1,0 +1,44 @@
+kind: Cluster
+metadata:
+  name: extended-net-demo-one
+spec:
+  version: 1.25
+  nodePoolsLaunchKind: "launch_configurations"
+  network: vpc-id
+  subnetworks:
+  - subnet-id
+  - subnet-id
+  - subnet-id
+  dmzCIDRRange:
+  - 10.1.0.0/16
+  sshPublicKey: "ssh-ed25519 Oi0pIDpEIDotRA=="
+  nodePools:
+  - name: infra
+    version: null
+    minSize: 3
+    maxSize: 3
+    instanceType: t3.large
+    volumeSize: 50
+    labels:
+      nodepool: infra
+      node.kubernetes.io/role: infra
+    taints:
+    - node.kubernetes.io/role=infra:NoSchedule
+    tags:
+      k8s.io/cluster-autoscaler/node-template/label/nodepool: "infra"
+      k8s.io/cluster-autoscaler/node-template/label/node.kubernetes.io/role: "infra"
+      k8s.io/cluster-autoscaler/node-template/taint/node.kubernetes.io/role: "infra:NoSchedule"
+  auth:
+    users:
+      - username: "your_iam_user"
+        groups:
+          - system:masters
+        userarn: "arn:aws:iam::your_aws_account_id:user/your_iam_user"
+executor:
+  state:
+    backend: s3
+    config:
+      bucket: extended-net-demo
+      key: furyctl/cluster-one
+      region: eu-west-1
+provisioner: eks

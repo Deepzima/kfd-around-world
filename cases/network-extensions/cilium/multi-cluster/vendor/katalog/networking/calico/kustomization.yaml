@@ -1,0 +1,34 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kube-system
+
+images:
+  - name: docker.io/calico/kube-controllers
+    newName: registry.sighup.io/fury/calico/kube-controllers
+  - name: docker.io/calico/cni
+    newName: registry.sighup.io/fury/calico/cni
+  - name: docker.io/calico/pod2daemon-flexvol
+    newName: registry.sighup.io/fury/calico/pod2daemon-flexvol
+  - name: docker.io/calico/node
+    newName: registry.sighup.io/fury/calico/node
+
+resources:
+  - config.yml
+  - crd.yml
+  - sa.yml
+  - deploy.yml
+  - ds.yml
+  - rbac.yml
+  - pdb.yml
+  # Resources needed for Monitoring
+  - monitoring
+
+# Patch to enable metrics on Felix (calico-node DaemonSet)
+# we need to do this at this level, because the base is out of monitoring/
+patchesStrategicMerge:
+  - "monitoring/felix-enable-metrics.yaml"

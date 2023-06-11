@@ -1,0 +1,6 @@
+namespace: utilities
+
+resources:
+- cronjob.yml
+- rbac.yml
+- ns.yml

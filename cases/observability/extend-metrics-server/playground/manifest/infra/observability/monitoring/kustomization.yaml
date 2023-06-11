@@ -12,4 +12,5 @@ resources:
   - ../../../../../vendor/katalog/monitoring/prometheus-operator
   - ../../../../../vendor/katalog/monitoring/prometheus-adapter
   
-patches:
+patchesStrategicMerge:
+  - patches/prometheus.yaml

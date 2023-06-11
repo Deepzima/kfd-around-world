@@ -11,6 +11,10 @@ resources:
   - ../../../../../vendor/katalog/monitoring/prometheus-operated
   - ../../../../../vendor/katalog/monitoring/prometheus-operator
   - ../../../../../vendor/katalog/monitoring/prometheus-adapter
+
+  ## Have to change them if you are using eks way
+  - ../../../../../vendor/katalog/monitoring/configs/kubeadm
+  # - ../../../../../vendor/katalog/monitoring/configs/eks 
   
 patchesStrategicMerge:
   - patches/prometheus.yaml

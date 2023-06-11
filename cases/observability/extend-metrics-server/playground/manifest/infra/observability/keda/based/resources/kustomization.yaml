@@ -1,0 +1,41 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+images:
+  - name: keda-metrics-apiserver
+    newName: ghcr.io/kedacore/keda-metrics-apiserver
+    newTag: 2.10.1
+  - name: keda
+    newName: ghcr.io/kedacore/keda
+    newTag: 2.10.1
+
+patchesStrategicMerge:
+  - |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: keda-operator
+      namespace: keda
+    spec:
+      replicas: 1
+
+resources:
+  - keda-ns.yaml
+  - crd/keda-scaledjobs-crd.yaml
+  - crd/keda-scaledobjects-crd.yaml
+  - crd/keda-triggerauths-crd.yaml
+  - crd/keda-clustertriggerauths-crd.yaml
+  - keda-operator-cr.yaml
+  - keda-operator-crb.yaml
+  - keda-operator-deployment.yaml
+  - keda-operator-rb.yaml
+  - keda-operator-role.yaml
+  - keda-operator-sa.yaml
+  - keda-operator-svc.yaml
+  - keda-authreader-rb.yaml
+  - keda-system-auth-delegator-crb.yaml
+  - keda-external-metrics-reader-cr.yaml
+  - keda-hpa-controller-external-metrics-crb.yaml
+  - keda-metrics-apiserver-deployment.yaml
+  - keda-metrics-apiserver-svc.yaml
+  - external-metrics-apiservice.yaml

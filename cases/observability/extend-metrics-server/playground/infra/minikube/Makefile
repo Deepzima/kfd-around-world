@@ -1,10 +1,10 @@
 kubernetes-version?=v1.25.3
 cluster-name?=cluster-one
 profile?=cluster-one
-driver?=hyperkit
-container-runtime?=docker
-memory?=4096
-cpu?=2
+driver?=parallels
+container-runtime?=containerd
+memory?=8000
+cpu?=4
 cni?=calico
 nodes?=1
 addons?=ingress
@@ -42,4 +42,5 @@ minikube-stand:
 .PHONY: addons
 addons:
 	@echo $(addons)
+	minikube profile $(cluster-name)
 	minikube addons enable $(addons)
